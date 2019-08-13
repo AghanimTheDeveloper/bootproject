@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
+        user.setRoles(attachRolesToUser());
         userDao.saveAndFlush(user);
         return user;
     }

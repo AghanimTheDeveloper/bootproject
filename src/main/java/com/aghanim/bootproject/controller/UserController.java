@@ -8,10 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -86,21 +84,21 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "/edit")
-    public String userFormForUpdate(@RequestParam("id") long id, Model model){
+    @GetMapping(value = "/edit/{id}")
+    public String userFormForUpdate(@PathVariable("id") long id, Model model){
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "edit";
     }
 
-    @PostMapping(value = "/edit")
-    public String editUser(@ModelAttribute("user") User user){
+    @PostMapping(value = "/edit/{id}")
+    public String editUser(@PathVariable("id") long id, @ModelAttribute("user") User user){
         userService.updateUser(user);
         return "redirect:/admin";
     }
 
-    @GetMapping(value = "/delete")
-    public String deleteUser(@RequestParam("id") long id){
+    @GetMapping(value = "/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
         return "redirect:/admin";
     }
