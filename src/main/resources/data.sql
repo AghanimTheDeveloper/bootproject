@@ -1,0 +1,10 @@
+SET FOREIGN_KEY_CHECKS  = 0;
+
+REPLACE INTO users VALUES (1, 'admin', 'admin', 'admin');
+
+REPLACE INTO roles VALUES (1, 'ROLE_ADMIN');
+REPLACE INTO roles VALUES (2, 'ROLE_USER');
+
+REPLACE INTO user_roles VALUES (1, 1);
+
+SET FOREIGN_KEY_CHECKS = 1;

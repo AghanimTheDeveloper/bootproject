@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User page</title>
+</head>
+<body>
+<h1>User page</h1>
+<label for="name">Name</label>:
+<input type="text" id="name" name="name" autofocus="autofocus"/> <br/>
+<label for="login">Login</label>:
+<input type="text" id="login" name="login"/> <br/>
+<label for="password">Password</label>:
+<input type="text" id="password" name="password"/> <br/>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Log out"/>
+</form>
+</body>
+</html>
