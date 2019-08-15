@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>User page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<h1>User page</h1>
-<label for="name">Name</label>:
-<input type="text" id="name" name="name" autofocus="autofocus"/> <br/>
-<label for="login">Login</label>:
-<input type="text" id="login" name="login"/> <br/>
-<label for="password">Password</label>:
-<input type="text" id="password" name="password"/> <br/>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Log out"/>
-</form>
+<div class="container-fluid">
+    <div style="background-color: #312f2f">
+        <div class="row justify-content-between">
+            <div class="col-3">
+                <div style="color: white">
+                    <h4>Aghanim's dome</h4>
+                </div>
+            </div>
+            <div class="col-1">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block">Log out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-4">
+        <div style="background-color: aquamarine">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="/user">User</a>
+            </nav>
+        </div>
+    </div>
+    <div class="col-8">
+        <div style="background-color: azure">
+            <form th:action="@{/user}" th:object="${user}" method="get">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-8">
+                        <input type="text" readonly class="form-control-plaintext" id="name" th:text="${user.getName()}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="login" class="col-sm-2 col-form-label">Login</label>
+                    <div class="col-8">
+                        <input type="text" readonly class="form-control-plaintext" id="login" th:text="${user.getLogin()}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-8">
+                        <input type="password" readonly class="form-control-plaintext" id="password" th:text="${user.getPassword()}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

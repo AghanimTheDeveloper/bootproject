@@ -1,5 +1,6 @@
 package com.aghanim.bootproject.controller;
 
+import com.aghanim.bootproject.dao.RoleDao;
 import com.aghanim.bootproject.model.User;
 import com.aghanim.bootproject.service.abstraction.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @GetMapping(value = "/index")
     public String welcome (Model model){
@@ -47,7 +51,7 @@ public class UserController {
         User loggedInUser = (User) authentication.getPrincipal();
         model.addAttribute("currentUser", loggedInUser.getName());
         session.setAttribute("user", loggedInUser);
-        return "redirect:/index";
+        return "user";
     }
 
     private void validatePrinciple(Object principal) {
